@@ -8,15 +8,18 @@ object Printer {
   
   def apply(writer: BufferedWriter, sexpr: SExpr): Unit = sexpr match {
     case SAtom(id) => writer.write(id)
-    case SApplication(operator, arguments) =>
+    case SList(arguments) =>
       writer.append('(')
-      writer.write(operator)
+      var first = true
       for (a <- arguments) {
-        writer.append(' ')
+        if (first) {
+          first = false
+        } else {
+          writer.append(' ')
+        }
         apply(writer, a)
       }
       writer.append(')')
-    case SNil => writer.write("()")
   }
 
   def apply(sexpr: SExpr): String = {

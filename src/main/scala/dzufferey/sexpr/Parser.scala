@@ -11,8 +11,7 @@ object Parser extends RegexParsers {
   def nonWhite: Parser[String] = """[^()\s]+""".r ^^ { _.toString }
 
   def sExpr: Parser[SExpr] = (
-      "(" ~ ")" ^^^ SNil
-    | "(" ~> (nonWhite ~ rep(sExpr)) <~ ")" ^^ { case op ~ args => SApplication(op, args) }
+      "(" ~> rep(sExpr) <~ ")" ^^ { case args => SList(args) }
     | nonWhite                          ^^ { op => SAtom(op) }
   )
 
