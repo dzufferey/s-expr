@@ -11,7 +11,8 @@ object Parser extends RegexParsers {
   def nonWhite: Parser[String] = """[^()\s]+""".r ^^ { _.toString }
 
   def sExpr: Parser[SExpr] = (
-      "(" ~> rep(sExpr) <~ ")" ^^ { case args => SList(args) }
+    "\"" ~> "[^\"]*".r <~ "\"" ^^ {s => SAtom("\""+s+"\"")} //no escaping or anything. quote to quote only.
+    | "(" ~> rep(sExpr) <~ ")" ^^ { case args => SList(args) }
     | nonWhite                          ^^ { op => SAtom(op) }
   )
 
