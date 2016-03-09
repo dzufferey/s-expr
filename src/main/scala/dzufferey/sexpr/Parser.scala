@@ -8,7 +8,7 @@ object Parser extends RegexParsers {
 
   protected override val whiteSpace = """(\s|;.*)+""".r
 
-  def nonWhite: Parser[String] = """[^()\s]+""".r ^^ { _.toString }
+  def nonWhite: Parser[String] = """[^()\s]+""".r
 
   def sExpr: Parser[SExpr] = (
     "\"" ~> "[^\"]*".r <~ "\"" ^^ {s => SAtom("\""+s+"\"")} //no escaping or anything. quote to quote only.
