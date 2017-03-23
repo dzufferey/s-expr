@@ -4,9 +4,9 @@ organization := "io.github.dzufferey"
 
 version := "0.1-SNAPSHOT"
 
-scalaVersion := "2.12.0"
+scalaVersion := "2.12.1"
 
-crossScalaVersions := Seq("2.11.8", "2.12.0")
+crossScalaVersions := Seq("2.11.8", "2.12.1")
 
 scalacOptions in Compile ++= Seq(
     "-unchecked",
@@ -15,12 +15,12 @@ scalacOptions in Compile ++= Seq(
 )
 
 libraryDependencies ++=  Seq(
-    "org.scala-lang.modules" %% "scala-parser-combinators" % "1.0.4",
-    "org.scalatest" %% "scalatest" % "3.0.0" % "test",
+    "org.scala-lang.modules" %% "scala-parser-combinators" % "1.0.5",
+    "org.scalatest" %% "scalatest" % "3.0.1" % "test",
     "org.scalacheck" %% "scalacheck" % "1.13.4" % "test"
 )
 
-addCompilerPlugin("org.psywerx.hairyfotr" %% "linter" % "0.1.16")
+addCompilerPlugin("org.psywerx.hairyfotr" %% "linter" % "0.1.17")
 
 publishMavenStyle := true
 
